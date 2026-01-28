@@ -3,24 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIBE GALAXY PRO</title>
+    <title>VIBE GALAXY - ROYAL</title>
     <style>
-        body { background: #050505; color: white; font-family: sans-serif; margin: 0; text-align: center; background-image: radial-gradient(circle, #1a1a2e, #050505); height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        .card { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,215,0,0.3); border-radius: 20px; padding: 30px; width: 80%; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        .gold { color: #ffd700; text-shadow: 0 0 10px #ffd700; font-size: 2.5rem; margin: 10px 0; }
-        .avatar { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #ffd700; margin: 20px auto; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: #111; box-shadow: 0 0 20px #ffd700; }
-        .rank { background: #ffd700; color: black; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
-        .btn { background: white; color: black; border: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; margin-top: 20px; cursor: pointer; }
+        body { background: #050505; color: white; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-image: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%); }
+        .card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 30px; padding: 40px 20px; width: 85%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
+        .vault-title { color: #ffd700; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; opacity: 0.8; }
+        .vault-value { font-size: 3rem; font-weight: 900; text-shadow: 0 0 20px rgba(255, 215, 0, 0.4); margin-bottom: 30px; }
+        .avatar-aura { width: 130px; height: 130px; margin: 0 auto 15px; border-radius: 50%; padding: 4px; background: linear-gradient(45deg, #ffd700, transparent, #ffd700); animation: rotate 3s linear infinite; }
+        .avatar-inner { background: #0a0a12; width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: bold; border: 2px solid #050505; }
+        .rank-badge { background: #ffd700; color: #000; padding: 6px 20px; border-radius: 50px; font-weight: 900; font-size: 0.8rem; display: inline-block; box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3); }
+        .user-name { font-size: 1.5rem; margin: 15px 0 5px; font-weight: 300; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .btn-enter { background: white; color: black; border: none; padding: 15px 40px; border-radius: 50px; font-weight: bold; margin-top: 30px; cursor: pointer; transition: 0.3s; width: 100%; }
     </style>
 </head>
 <body>
     <div class="card">
-        <div style="font-size: 0.8rem; letter-spacing: 2px;">خزنة المجرة</div>
-        <div class="gold">1,240,500</div>
-        <div class="avatar">KI</div>
-        <div class="rank">القيصر الملكي</div>
-        <h2 style="margin: 10px 0;">الملف الشخصي</h2>
-        <button class="btn">دخول النظام</button>
+        <div class="vault-title">خزنة المجرة المركزية</div>
+        <div class="vault-value">1,240,500</div>
+        <div class="avatar-aura">
+            <div class="avatar-inner">KI</div>
+        </div>
+        <div class="rank-badge">القيصر الملكي</div>
+        <div class="user-name">VIBE GALAXY</div>
+        <div style="color: #666; font-size: 0.8rem;">المستوى الإمبراطوري 24</div>
+        <button class="btn-enter" onclick="alert('مرحباً بك في قاعة العرش!')">دخول النظام</button>
     </div>
 </body>
 </html>
