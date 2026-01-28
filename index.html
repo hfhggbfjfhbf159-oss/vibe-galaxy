@@ -2,32 +2,225 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VIBE GALAXY - ROYAL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIBE GALAXY - THE IMPERIAL SYSTEM</title>
     <style>
-        body { background: #050505; color: white; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-image: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%); }
-        .card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255, 215, 0, 0.2); border-radius: 30px; padding: 40px 20px; width: 85%; max-width: 400px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        .vault-title { color: #ffd700; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px; opacity: 0.8; }
-        .vault-value { font-size: 3rem; font-weight: 900; text-shadow: 0 0 20px rgba(255, 215, 0, 0.4); margin-bottom: 30px; }
-        .avatar-aura { width: 130px; height: 130px; margin: 0 auto 15px; border-radius: 50%; padding: 4px; background: linear-gradient(45deg, #ffd700, transparent, #ffd700); animation: rotate 3s linear infinite; }
-        .avatar-inner { background: #0a0a12; width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: bold; border: 2px solid #050505; }
-        .rank-badge { background: #ffd700; color: #000; padding: 6px 20px; border-radius: 50px; font-weight: 900; font-size: 0.8rem; display: inline-block; box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3); }
-        .user-name { font-size: 1.5rem; margin: 15px 0 5px; font-weight: 300; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .btn-enter { background: white; color: black; border: none; padding: 15px 40px; border-radius: 50px; font-weight: bold; margin-top: 30px; cursor: pointer; transition: 0.3s; width: 100%; }
+        :root {
+            --gold: #ffd700;
+            --deep-space: #050505;
+            --neon-blue: #00f3ff;
+            --neon-red: #ff0055;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            margin: 0;
+            background: var(--deep-space);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background-image: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* خلفية النجوم */
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            border-radius: 35px;
+            padding: 40px 25px;
+            width: 85%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.9);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* عناصر الواجهة */
+        .vault-value {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--gold);
+            text-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
+            margin-bottom: 5px;
+        }
+
+        .avatar-aura {
+            width: 140px;
+            height: 140px;
+            margin: 20px auto;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(45deg, var(--gold), transparent, var(--gold));
+            animation: rotate 4s linear infinite;
+            position: relative;
+        }
+
+        .avatar-inner {
+            background: #0a0a1a;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            font-weight: bold;
+            border: 2px solid var(--deep-space);
+        }
+
+        .rank-badge {
+            background: var(--gold);
+            color: black;
+            padding: 6px 25px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 0.85rem;
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* لوحة التحكم (مخفية في البداية) */
+        #dashboard {
+            display: none;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .stat-box {
+            background: rgba(255,255,255,0.04);
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stat-num {
+            display: block;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: var(--gold);
+        }
+
+        .btn-main {
+            background: white;
+            color: black;
+            border: none;
+            padding: 16px;
+            border-radius: 50px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn-main:active { transform: scale(0.95); }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* شريط الحالة */
+        .battle-bar {
+            height: 6px;
+            background: #222;
+            border-radius: 10px;
+            margin: 20px 0;
+            overflow: hidden;
+            display: flex;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="vault-title">خزنة المجرة المركزية</div>
+
+    <div class="stars"></div>
+
+    <div id="welcome-screen" class="card">
+        <div style="font-size: 0.7rem; letter-spacing: 4px; color: var(--gold); opacity: 0.8;">CENTRAL VAULT</div>
         <div class="vault-value">1,240,500</div>
+        
         <div class="avatar-aura">
             <div class="avatar-inner">KI</div>
         </div>
+        
         <div class="rank-badge">القيصر الملكي</div>
-        <div class="user-name">VIBE GALAXY</div>
-        <div style="color: #666; font-size: 0.8rem;">المستوى الإمبراطوري 24</div>
-        <button class="btn-enter" onclick="alert('مرحباً بك في قاعة العرش!')">دخول النظام</button>
+        <h2 style="margin: 15px 0 5px; font-weight: 300;">VIBE GALAXY</h2>
+        <p style="color: #888; font-size: 0.8rem; margin: 0;">نظام إدارة المجرة جاهز</p>
+        
+        <button class="btn-main" onclick="startSystem()">دخول النظام الملكي</button>
     </div>
+
+    <div id="dashboard" class="card">
+        <h2 style="color: var(--gold); margin-top: 0;">لوحة التحكم الإمبراطورية</h2>
+        
+        <div class="battle-bar">
+            <div style="width: 65%; background: var(--neon-red); box-shadow: 0 0 10px var(--neon-red);"></div>
+            <div style="width: 35%; background: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue);"></div>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-box">
+                <span class="stat-num">24</span>
+                <span style="font-size: 0.7rem; color: #aaa;">المستوى</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num">1.2M</span>
+                <span style="font-size: 0.7rem; color: #aaa;">الرصيد</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num">88%</span>
+                <span style="font-size: 0.7rem; color: #aaa;">قوة الدفاع</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-num">412</span>
+                <span style="font-size: 0.7rem; color: #aaa;">المحاربين</span>
+            </div>
+        </div>
+
+        <button class="btn-main" style="background: transparent; border: 1px solid white; color: white;" onclick="exitSystem()">تسجيل الخروج</button>
+    </div>
+
+    <script>
+        function startSystem() {
+            const welcome = document.getElementById('welcome-screen');
+            const dash = document.getElementById('dashboard');
+
+            welcome.style.opacity = '0';
+            welcome.style.transform = 'scale(0.8)';
+            
+            setTimeout(() => {
+                welcome.style.display = 'none';
+                dash.style.display = 'block';
+                setTimeout(() => {
+                    dash.style.opacity = '1';
+                    dash.style.transform = 'scale(1)';
+                }, 50);
+            }, 600);
+        }
+
+        function exitSystem() {
+            location.reload();
+        }
+    </script>
 </body>
 </html>
