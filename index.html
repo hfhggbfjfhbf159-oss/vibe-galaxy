@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:css='false' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b'>
+<head>
+<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'/>
+<title>VIBE GALAXY - Final Edition</title>
+<b:skin><![CDATA[
+  /* كل تنسيقات CSS السابقة محفوظة هنا */
+  body { background: #020617; font-family: 'Cairo', sans-serif; margin: 0; direction: rtl; color: #fff; overflow-x: hidden; }
+  #galaxy-bg { position: fixed; inset: 0; z-index: -1; background: radial-gradient(circle at center, #0f172a 0%, #020617 100%); }
+  
+  /* تنسيق الواجهة الرئيسية */
+  .vault-section { background: radial-gradient(circle, #1e293b, #0f172a); border-radius: 25px; padding: 20px; text-align: center; border: 1px solid #ffd60a; margin: 15px; position: relative; z-index: 10; }
+  .jackpot-amount { font-size: 30px; font-weight: 900; color: #ffd60a; text-shadow: 0 0 15px rgba(255,214,10,0.5); }
+  
+  /* تنسيق لوحة الإعدادات */
+  #settings-panel { position: fixed; inset: 0; background: #020617; z-index: 2000; transform: translateX(-100%); transition: 0.5s; padding: 25px; display: flex; flex-direction: column; }
+  #settings-panel.open { transform: translateX(0); }
+
+  /* تنسيق الهالة واللفل */
+  .avatar-with-aura { position: relative; display: inline-block; width: 90px; height: 90px; }
+  .level-aura { position: absolute; inset: -5px; border-radius: 50%; animation: aura-spin 4s linear infinite; filter: blur(5px); z-index: -1; background: conic-gradient(from 0deg, #bf5af2, #ff2d55, transparent); }
+  @keyframes aura-spin { to { transform: rotate(360deg); } }
+
+  #notify-box { position: fixed; top: -100px; left: 50%; transform: translateX(-50%); background: rgba(15,23,42,0.95); border: 1px solid #ffd60a; padding: 15px 25px; border-radius: 20px; z-index: 10000; transition: 0.5s; display: flex; align-items: center; gap: 10px; }
+]]></b:skin>
+</head>
+<body>
+  <b:section id='main-galaxy' maxwidgets='1' showaddelement='yes'/>
+
+  <div id="galaxy-bg"></div>
+  
+  <div id="notify-box">
+    <span id="notify-emoji"></span>
+    <span id="notify-msg"></span>
+  </div>
+
+  <div onclick="toggleSettings(true)" style="position:fixed; top:20px; left:20px; z-index:1500; background:rgba(255,255,255,0.05); padding:10px; border-radius:12px; cursor:pointer; backdrop-filter:blur(5px);">⚙️</div>
+
+  <div id="main-app" style="padding-top: 60px;">
+    <div class="vault-section">
+        <div style="font-size:10px; letter-spacing:2px; opacity:0.7;">خزنة المجرة المركزية</div>
+        <div class="jackpot-amount" id="vault-total">1,240,500</div>
+        <div style="height:4px; background:rgba(255,255,255,0.1); border-radius:2px; margin-top:10px;">
+            <div id="vault-progress" style="width:80%; height:100%; background:#ffd60a; box-shadow:0 0 10px #ffd60a;"></div>
+        </div>
+    </div>
+
+    <div style="padding:0 20px; margin-top:20px;">
+        <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:8px;">
+            <span style="color:#ff2d55; font-weight:bold;">التحالف الأحمر</span>
+            <span style="background:#ff2d55; padding:2px 10px; border-radius:10px; font-size:10px;">00:45</span>
+            <span style="color:#007aff; font-weight:bold;">الفيلق الأزرق</span>
+        </div>
+        <div style="height:12px; background:#1e293b; border-radius:10px; display:flex; overflow:hidden;">
+            <div style="width:60%; background:#ff2d55;"></div>
+            <div style="width:40%; background:#007aff;"></div>
+        </div>
+    </div>
+  </div>
+
+  <div id="settings-panel">
+    <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h2 style="color:#ffd60a;">الملف الشخصي</h2>
+        <button onclick="toggleSettings(false)" style="background:none; border:none; color:#fff; font-size:28px;">×</button>
+    </div>
+    
+    <div style="text-align:center; margin-top:20px;">
+        <div class="avatar-with-aura">
+            <div class="level-aura"></div>
+            <img src="https://ui-avatars.com/api/?name=King&amp;background=bf5af2&amp;color=fff" style="width:100%; border-radius:50%; border:2px solid #fff;"/>
+        </div>
+        <h3 style="margin-top:10px;">القيصر الملكي</h3>
+        <span style="background:#bf5af2; padding:2px 10px; border-radius:10px; font-size:12px;">Lv. 24</span>
+    </div>
+
+    <button onclick="toggleSettings(false)" style="margin-top:auto; background:#ffd60a; color:#000; border:none; padding:15px; border-radius:15px; font-weight:900;">العودة للمجرة</button>
+  </div>
+
+  <script>
+    function toggleSettings(open) {
+        document.getElementById('settings-panel').classList.toggle('open', open);
+    }
+    
+    window.onload = function() {
+        const box = document.getElementById('notify-box');
+        document.getElementById('notify-emoji').innerText = "🌌";
+        document.getElementById('notify-msg').innerText = "تم تحميل أنظمة المجرة بنجاح";
+        box.style.top = '20px';
+        setTimeout(() => box.style.top = '-100px', 3000);
+    };
+  </script>
+</body>
+</html>
