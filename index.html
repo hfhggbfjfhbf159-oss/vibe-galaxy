@@ -2,151 +2,84 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>VIBE GALAXY - ULTIMATE SYSTEM</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIBE GALAXY OFFICIAL</title>
     <style>
-        :root {
-            --gold: #ffd700;
-            --bg: #050505;
-            --glass: rgba(255, 255, 255, 0.05);
-            --neon-blue: #00f3ff;
-        }
-
-        body {
-            margin: 0; background: var(--bg); color: white;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            display: flex; justify-content: center; align-items: center;
-            height: 100vh; overflow: hidden;
-            background-image: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%);
-        }
-
-        /* خلفية النجوم المتحركة */
-        .stars {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://www.transparenttextures.com/patterns/stardust.png');
-            opacity: 0.3; z-index: -1;
-        }
-
-        .container {
-            background: var(--glass);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 215, 0, 0.1);
-            border-radius: 35px;
-            padding: 40px 25px;
-            width: 85%; max-width: 400px;
-            text-align: center;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.8);
-            transition: 0.5s;
-        }
-
-        /* تنسيق الأزرار والخانات */
-        .google-btn {
-            background: white; color: #333; width: 100%;
-            padding: 12px; border-radius: 15px; border: none;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: bold; cursor: pointer; margin-bottom: 20px;
-            font-size: 0.9rem; transition: 0.3s;
-        }
-        .google-btn img { width: 18px; margin-left: 10px; }
-
-        .input-field {
-            width: 100%; padding: 15px; margin: 10px 0; border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3);
-            color: white; font-size: 1rem; box-sizing: border-box; outline: none;
-        }
-        .input-field:focus { border-color: var(--gold); }
-
-        .action-btn {
-            background: var(--gold); color: black; width: 100%;
-            padding: 15px; border-radius: 15px; border: none;
-            font-weight: 900; font-size: 1.1rem; cursor: pointer;
-            margin-top: 15px; box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
-        }
-
-        /* واجهة لوحة التحكم (مخفية) */
-        #main-dashboard { display: none; }
-
-        .vault-value { font-size: 3rem; color: var(--gold); text-shadow: 0 0 20px var(--gold); }
-        
-        .avatar-aura {
-            width: 120px; height: 120px; margin: 20px auto; border-radius: 50%; padding: 4px;
-            background: linear-gradient(45deg, var(--gold), transparent, var(--gold));
-            animation: rotate 4s linear infinite;
-        }
-        .avatar-inner {
-            background: #0a0a1a; width: 100%; height: 100%; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 3rem; font-weight: bold;
-        }
-
+        :root { --gold: #ffd700; --bg: #050505; --glass: rgba(255,255,255,0.05); }
+        body { margin: 0; background: var(--bg); color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; background-image: radial-gradient(circle, #1a1a2e, #000); }
+        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://www.transparenttextures.com/patterns/stardust.png'); opacity: 0.3; z-index: -1; }
+        .card { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid rgba(255,215,0,0.2); border-radius: 35px; padding: 30px; width: 85%; max-width: 380px; text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.8); position: relative; }
+        #login-page { position: absolute; top:0; left:0; width:100%; height:100%; background:#0a0a1a; z-index:100; border-radius:35px; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:25px; box-sizing:border-box; }
+        .vault-value { font-size: 3rem; color: var(--gold); text-shadow: 0 0 20px var(--gold); margin: 10px 0; font-weight: bold; }
+        .avatar-aura { width: 120px; height: 120px; margin: 15px auto; border-radius: 50%; padding: 4px; background: linear-gradient(45deg, var(--gold), transparent, var(--gold)); animation: rotate 4s linear infinite; cursor: pointer; }
+        .avatar-inner { background: #0a0a1a; width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; }
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
-        .stat-item { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 20px; border: 1px solid #333; }
+        input { width: 100%; padding: 15px; margin: 10px 0; border-radius: 15px; border: 1px solid #333; background: #111; color: white; text-align: center; font-size: 1rem; }
+        .btn { background: var(--gold); color: black; border: none; padding: 15px; width: 100%; border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 1.1rem; box-shadow: 0 5px 15px rgba(255,215,0,0.2); }
+        .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .stat-box { background: rgba(255,255,255,0.03); padding: 10px; border-radius: 15px; border: 1px solid #333; }
     </style>
 </head>
 <body>
-
     <div class="stars"></div>
-
-    <div id="login-page" class="container">
-        <h2 style="margin-bottom: 5px;">نظام <span style="color: var(--gold);">VIBE</span></h2>
-        <p style="color: #888; font-size: 0.8rem; margin-bottom: 25px;">الإصدار الملكي 2026</p>
-
-        <button class="google-btn" onclick="simulateLogin('Google')">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="">
-            متابعة باستخدام Google
-        </button>
-
-        <div style="margin: 15px 0; color: #555; font-size: 0.8rem;">أو عبر الهوية الملكية</div>
-
-        <input type="text" class="input-field" id="user" placeholder="اسم المستخدم">
-        <input type="password" class="input-field" id="pass" placeholder="كلمة المرور">
-        
-        <button class="action-btn" onclick="simulateLogin('Manual')">دخول النظام</button>
-    </div>
-
-    <div id="main-dashboard" class="container">
-        <div style="font-size: 0.7rem; letter-spacing: 3px; color: var(--gold);">THE VAULT</div>
-        <div class="vault-value">1,240,500</div>
-        
-        <div class="avatar-aura">
+    <div class="card">
+        <div id="login-page">
+            <h2 style="color: var(--gold);">VIBE GALAXY</h2>
+            <p style="font-size: 0.8rem; color: #888;">أدخل الرمز الملكي للدخول</p>
+            <input type="password" id="pass" placeholder="رمز السر (1234)">
+            <button class="btn" onclick="login()">دخول النظام</button>
+        </div>
+        <div style="font-size: 0.7rem; color: var(--gold); letter-spacing: 2px;">الرصيد الملكي</div>
+        <div class="vault-value" id="balance">0</div>
+        <div class="avatar-aura" onclick="tap()">
             <div class="avatar-inner">KI</div>
         </div>
-        
-        <h2 style="margin: 5px 0;">VIBE GALAXY</h2>
-        <div style="background: var(--gold); color: black; padding: 5px 20px; border-radius: 50px; display: inline-block; font-weight: bold; font-size: 0.8rem;">القيصر الملكي</div>
-
+        <h2 style="margin: 5px 0;">القيصر VIBE</h2>
         <div class="stats">
-            <div class="stat-item"><span style="color: var(--gold); font-weight: bold;">412</span><br><small>محارب</small></div>
-            <div class="stat-item"><span style="color: var(--gold); font-weight: bold;">88%</span><br><small>طاقة</small></div>
+            <div class="stat-box"><span id="power" style="color: var(--gold);">1</span><br><small>قوة الضربة</small></div>
+            <div class="stat-box"><span id="auto" style="color: var(--gold);">0</span><br><small>تعدين/ث</small></div>
         </div>
-
-        <button class="action-btn" style="background: white; margin-top: 25px;" onclick="location.reload()">خروج آمن</button>
+        <button class="btn" style="background: white; margin-top: 15px;" onclick="buyAuto()">شراء تعدين آلي (50 نقطة)</button>
     </div>
 
     <script>
-        function simulateLogin(type) {
-            if(type === 'Manual') {
-                const p = document.getElementById('pass').value;
-                if(p === "") { alert("يرجى إدخال كلمة المرور"); return; }
-            }
-            
-            // تأثير الدخول
-            const loginPage = document.getElementById('login-page');
-            const dash = document.getElementById('main-dashboard');
-            
-            loginPage.style.opacity = '0';
-            loginPage.style.transform = 'scale(0.9)';
-            
-            setTimeout(() => {
-                loginPage.style.display = 'none';
-                dash.style.display = 'block';
-                setTimeout(() => {
-                    dash.style.opacity = '1';
-                    dash.style.transform = 'scale(1)';
-                }, 50);
-            }, 500);
+        let score = parseInt(localStorage.getItem('v_score')) || 0;
+        let autoRate = parseInt(localStorage.getItem('v_auto')) || 0;
+
+        function login() {
+            if(document.getElementById('pass').value === "1234") {
+                document.getElementById('login-page').style.display = 'none';
+            } else { alert("الرمز غير صحيح!"); }
         }
+
+        function updateUI() {
+            document.getElementById('balance').innerText = Math.floor(score).toLocaleString();
+            document.getElementById('auto').innerText = "+" + autoRate;
+            localStorage.setItem('v_score', score);
+            localStorage.setItem('v_auto', autoRate);
+        }
+
+        function tap() {
+            score += 1;
+            updateUI();
+        }
+
+        function buyAuto() {
+            if(score >= 50) {
+                score -= 50;
+                autoRate += 1;
+                updateUI();
+            } else { alert("نقاطك لا تكفي!"); }
+        }
+
+        setInterval(() => {
+            if(autoRate > 0) {
+                score += (autoRate / 10);
+                updateUI();
+            }
+        }, 100);
+
+        updateUI();
     </script>
 </body>
 </html>
